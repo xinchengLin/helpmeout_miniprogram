@@ -1,0 +1,46 @@
+/* pages/notification/notification.wxss */
+.container{
+  padding: 0;
+}
+.notificationList{
+  width: 96%;
+  margin: 20rpx auto;
+  font-size: 32rpx;
+}
+.notificationItem{
+  margin-bottom: 20rpx;
+}
+.notificationList .time{
+  width: 40%;
+  text-align: center;
+  margin: 0 auto 20rpx;
+  background: #c0c0c0;
+  color: #f0f0f0;
+  font-size: 28rpx;
+  border-radius: 12rpx;
+  line-height:55rpx;
+}
+.notificationList .msg{
+  width: 96%;
+  padding: 10rpx 30rpx 20rpx;
+  box-sizing: border-box;
+  background: #fff;
+  line-height: 60rpx;
+  margin: 10rpx auto;
+  border-radius: 12rpx;
+  color: #8a8a8a;
+}
+.notificationList .title{
+  font-weight: bold;
+  color: #000;
+  line-height: 80rpx;
+}
+.noNotify{
+  margin: auto;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+}
+navigator{
+  color: #09f;
+}

@@ -1,0 +1,22 @@
+<!--pages/chatPage/chatPage.wxml-->
+<view class='container'>
+  <scroll-view scroll-y='{{true}}' style='height: {{height}}rpx' scroll-top="{{scrollTop}}">
+    <view id='scrollSelector'>
+      <view wx:for="{{myMsg}}" wx:key="{{index}}" class="showMsg {{item.identity == 0?'mine':'his'}}">
+        <view>
+          <text class='name'>{{item.speakerName}}</text>
+          <time class='time'>{{item.time}}</time>
+        </view>
+        <text class='msg' selectable='true'>{{item.msg}}</text>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='inputFrame'>
+    <form bindsubmit='sendMsg'>
+      <view class='fontStyle'>
+        <input type='text' name="inputText" value='{{inputText}}' bindinput='inputFinish' confirm-type='send'></input>
+        <button form-type='submit' class='buttonClass' hover-class='buttonHover'>发送</button>
+      </view>
+    </form>
+  </view>
+</view>

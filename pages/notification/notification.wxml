@@ -1,0 +1,15 @@
+<!--pages/notification/notification.wxml-->
+<view class='container'>
+  <view class='noNotify' wx:if="{{noNotice}}">哎呀，暂时没有消息通知呢╮(๑•́ ₃•̀๑)╭</view>
+  <view class='notificationList' wx:else>
+    <view class='notificationItem' wx:for="{{data}}" wx:key="{{index}}">
+      <view class='time'>{{receiveTime[index]}}</view>
+      <view class='msg'>
+        <view class='title'>{{titleArray[item.code]}}</view>
+        {{item.msg}}
+        <navigator url='../chatPage/chatPage?userId={{item.fromUserId}}&userName={{item.fromUserName}}&journeyId={{item.journeyId}}' hover-class='none' wx:if="{{item.code == 4}}">点击进入聊天界面>></navigator>
+      </view>
+    </view>
+  </view>
+
+</view>

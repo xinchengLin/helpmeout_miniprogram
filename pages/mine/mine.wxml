@@ -1,0 +1,39 @@
+<!--pages/mine/mine.wxml-->
+<view class="content">
+<view class="head">
+  <view class="heading_content">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+</view>
+<view class="gongneng">
+  <navigator url='../myCode/myCode' hover-class='none'>
+    <text class='iconfont icon-erweima'></text>
+    <text>我的收款二维码</text>
+  </navigator>
+  <navigator url='../trip/trip' hover-class='none'>
+    <text class='iconfont icon-xingcheng'></text>
+    <text>我的行程</text>
+  </navigator>
+  <navigator url='../historicalOrder/historicalOrder' hover-class='none'>
+    <text class='iconfont icon-shijian'></text>
+    <text>历史行程</text>
+  </navigator>
+  <navigator url='../feedback/feedback' hover-class='none'>
+    <text class='iconfont icon-wodefankui'></text>
+    <text>我要反馈</text>
+  </navigator>
+  <navigator url='../notice/notice' hover-class='none'>
+    <text class='iconfont icon-calendar'></text>
+    <text>公告栏</text>
+  </navigator>
+  <!-- <navigator url='../forLove/forLove' hover-class='none'>
+    <text class='iconfont #icon-xiangqu'></text>
+    <text>为爱发电</text>
+  </navigator>  -->
+   <view hover-class='none' bindtap='clearChattingStorage'>
+    <icon type='clear' class='iconfont clearIcon' size='16'></icon>
+    <text>清理缓存</text>
+  </view> 
+</view>
+</view>

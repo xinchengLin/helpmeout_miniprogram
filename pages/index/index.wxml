@@ -1,0 +1,22 @@
+<view class='container'>
+  <view wx:if="{{canIUse}}" >
+    <image src='/images/logo.png'></image>
+    <text class='name'>载下我</text>
+    <button 
+      wx:if="{{canIUse}}" 
+      open-type="getUserInfo" 
+      bindgetuserinfo="bindGetUserInfo"
+      class='buttonClass'
+      hover-class='buttonHover'
+      disabled="{{isDisable}}"
+    >开始使用</button>
+      <checkbox-group bindchange="checkChange">
+        <checkbox value="true"></checkbox>
+        我已认真阅读并同意该协议 
+        <navigator url='../userAgree/userAgree' hover-class='none' class='agreement'>
+          《用户服务协议》
+        </navigator> 
+      </checkbox-group>
+  </view>
+  <view wx:else>请升级微信版本</view>
+</view>

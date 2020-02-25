@@ -1,0 +1,149 @@
+<!--pages/publish/publish.wxml-->
+<view class='container'>
+   <view class='tipText'>
+    <image src='/images/icon/tips.png' class='tipImage'></image>
+    <view class='notice'>
+      <text class='noticeText'>车主乘客都可以发单啦，发单时请选择您的身份</text>
+    </view>
+  </view> 
+
+   <!-- <view class='header'>
+    发布行程
+  </view>  -->
+
+  <form bindsubmit="formSubmit">
+    <view class='category'>
+      <view class='title'>用户名</view>
+      <view class='input'>
+        <text>{{nickName}}</text>
+      </view>
+    </view>
+
+    <view class='line'></view>
+
+    <view class='category'>
+      <view class='title'>手机号码</view>
+      <view class='input'>
+        <input 
+          type='number' 
+          placeholder='请输入手机号码' 
+          name="phoneNum" 
+          bindchange="bindchange" 
+          value='{{phone}}'
+          bindblur='checkValue'
+          id='1'>
+        </input>
+      </view>
+      <icon type="{{phoneStatus?'success':'warn'}}" size='18'></icon>
+    </view>
+
+    <view class='line'></view>
+  
+    <view class='category goTime'>
+      <view class='title'>出发时间</view>
+      <view class='input'>
+        <picker bindchange='dateChange' value='{{date}}' name="date" range='{{dateList}}'>
+          <view>{{dateList[date]}}</view>
+        </picker>
+        <picker 
+          mode="time" 
+          value="{{goTime}}" 
+          bindchange="bindTimeChange" 
+          name="goTime" 
+          start="{{timeStart}}"
+          end="{{timeEnd}}">
+          <view class='picker'>
+            {{goTime}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class='line'></view>
+
+    <view class='category'>
+      <view class='title'>出发地点</view>
+      <view class='input'>
+        <input 
+          type='text' 
+          placeholder='如：海安' 
+          name="goPos"
+          bindblur='checkValue'
+          id='2'
+          maxlength='8'>
+        </input>
+      </view>
+      <icon type="{{fromPosStatus?'success':'warn'}}" size='18'></icon>
+    </view>
+
+    <view class='line'></view>
+
+    <view class='category'>
+      <view class='title'>目的地</view>
+      <view class='input'>
+        <input 
+          type='text' 
+          placeholder='如：钟海楼' 
+          name="arrivePos"
+          bindblur='checkValue'
+          id='3'
+          maxlength='8'>
+        </input>
+      </view>
+      <icon type="{{toPosStatus?'success':'warn'}}" size='18'></icon>
+    </view>
+
+    <view class='line'></view>
+
+    <view class='category'>
+      <view class='title'>价格</view>
+      <view class='input'>
+        <input 
+          type='digit' 
+          placeholder='输入数字无需单位' 
+          name="price"
+          bindblur='checkValue'
+          id='4'>
+        </input>
+      </view>
+      <icon type="{{priceStatus?'success':'warn'}}" size='18'></icon>
+    </view>
+
+     <view class='line'></view>
+
+     <view class='category'>
+      <view class='title'>身份</view>
+      <view class='input'>
+        <radio-group class="radio-group" name="identity">
+          <label>
+            <radio value="0" checked/>乘客
+          </label>
+          <label>
+            <radio value="1"/>车主
+          </label>
+        </radio-group>
+      </view>
+    </view> 
+
+    <view class='line'></view>
+
+    <view class='category'>
+      <view class='title'>备注</view>
+      <view class='input'>
+        <input type='text' name="note" maxlength="15" placeholder='如有特殊要求，请填写备注'></input>
+      </view>
+    </view>
+
+    <view class='line'></view> 
+
+    <view>
+      <button 
+        form-type="submit" 
+        class='buttonClass' 
+        hover-class='buttonHover' 
+        loading="{{submitLoading}}"
+      >发布</button>
+    </view>
+  </form>  
+
+</view>

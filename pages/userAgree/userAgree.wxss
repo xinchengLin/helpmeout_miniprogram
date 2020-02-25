@@ -1,0 +1,22 @@
+/* pages/userAgree/userAgree.wxss */
+.content{
+  margin: 0 20rpx 20rpx;
+}
+view .title{
+  text-align: center;
+  line-height: 80rpx;
+}
+.first{
+  line-height: 60rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.second{
+  text-indent: 12rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+}
+.third{
+  text-indent: 16rpx;
+  font-size: 28rpx;
+}

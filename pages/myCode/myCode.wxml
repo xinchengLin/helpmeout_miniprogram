@@ -1,0 +1,15 @@
+<!--pages/myCode/myCode.wxml-->
+<view>
+  <view class='tipText'>
+    <image src='/images/icon/tips.png' class='tipImage'></image>
+    <text>上传后，下次出示此页给乘客，方便乘客付款</text>
+  </view>
+  <view class='chooseCode' bindtap='chooseCode'>
+    <text class='iconfont icon-shangchuan'></text>
+    <text>点击上传我的收款二维码</text>
+  </view>
+  <view class='myCode' wx:if="{{codeUrl != ''}}">
+    <text>我的收款二维码</text>
+    <image src='{{codeUrl}}' data-src='{{codeUrl}}' bindtap='previewCode' mode='widthFix'></image>
+  </view>
+</view>

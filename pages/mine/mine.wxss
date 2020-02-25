@@ -1,0 +1,63 @@
+/* pages/mine/mine.wxss */
+.content{
+   padding: 0;
+   margin: 0;
+}
+.head{
+    height: 420rpx;
+    width: 100%;
+    position: relative;
+    margin-bottom:30rpx;
+    background:#f06f7f;
+}
+.heading_content{
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50rpx;
+  margin: 0 auto;
+}
+.userinfo-avatar {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  box-shadow:0rpx 0rpx 8rpx 4rpx rgba(225,225,225,0.8);
+
+}
+.userinfo-nickname{
+  height: 120rpx;
+  font-size: 40rpx;
+  color: #fff;
+  display: block;
+  text-align: center;
+  line-height: 120rpx;
+}
+.gongneng{
+  width: 100%;
+  font-size: 32rpx;
+  padding-bottom: 30rpx;
+}
+.gongneng navigator,.gongneng view{
+  height: 95rpx;
+  background: #fff;
+  /* color: #696969; */
+  line-height: 95rpx;
+  text-indent: 30rpx;
+}
+.gongneng navigator{
+  margin-bottom: 2rpx;
+}
+.gongneng navigator:nth-of-type(1),.gongneng navigator:nth-of-type(4),.gongneng navigator:nth-of-type(6){
+  margin-bottom: 30rpx;
+}
+.iconfont{
+  padding-right: 20rpx;
+}
+.clearIcon{
+  position: relative;
+  top: 6rpx;
+  display: inline;
+}

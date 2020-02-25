@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/discovery/discovery",
+    "pages/mine/mine",
+    "pages/publish/publish",
+    "pages/feedback/feedback",
+    "pages/trip/trip",
+    "pages/index/index",
+    "pages/myCode/myCode",
+    "pages/notice/notice",
+    "pages/notification/notification",
+    "pages/forLove/forLove",
+    "pages/userAgree/userAgree",
+    "pages/historicalOrder/historicalOrder",
+    "pages/chatPage/chatPage"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#f06f7f",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/discovery/discovery",
+        "text": "发现",
+        "iconPath": "images/icon/disc.png",
+        "selectedIconPath": "images/icon/discSelected.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发布",
+        "iconPath": "images/icon/add.png",
+        "selectedIconPath": "images/icon/addSelected.png"
+      },
+      {
+        "pagePath": "pages/notification/notification",
+        "text": "消息",
+        "iconPath": "images/icon/notify.png",
+        "selectedIconPath": "images/icon/notified.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/icon/mine.png",
+        "selectedIconPath": "images/icon/mineSelected.png"
+      }
+    ],
+    "color": "#8a8a8a",
+    "selectedColor": "#f06f7f"
+  },
+  "sitemapLocation": "sitemap.json"
+}

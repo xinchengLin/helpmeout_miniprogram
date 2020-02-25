@@ -1,0 +1,16 @@
+<!--pages/notice/notice.wxml-->
+<view class='container'>
+  <view class='noticeItem'>
+    <text class='title'>{{notice.title}}</text>
+    <text wx:key="{{index}}">{{notice.content}}</text>
+  </view>
+  <view class='noticeItem'>
+  </view>
+  <view class='bottom'>
+    <text>本平台技术由“伯爵科技”团队提供</text>
+    <navigator url='../userAgree/userAgree' hover-class='none'>
+      使用前请仔细阅读 
+      <text class='agreement'>《用户服务协议》</text> 
+    </navigator>
+  </view>
+</view>

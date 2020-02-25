@@ -1,0 +1,27 @@
+/*content*/
+.flex{
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+}
+input{
+  width: 90%;
+  margin: 0 auto;
+  border: 1rpx solid #8e8e8e;
+  margin-top: 20rpx;
+}
+textarea{
+  width: 95%;
+  height: 400rpx;
+  border: 1rpx solid #f06f7f;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  font-size: 30rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.feedbackBtn{
+  width: 50%;
+  margin: 30rpx auto;
+}

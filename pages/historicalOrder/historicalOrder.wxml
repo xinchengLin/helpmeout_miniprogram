@@ -1,0 +1,118 @@
+<!--pages/historicalOrder/historicalOrder.wxml-->
+<view class='bai'>
+  <view class='tipText'>
+    <image src='/images/icon/tips.png' class='tipImage'></image>
+    <view class='notice'>
+      <text class='noticeText'>历史订单只显示当天的订单哦</text>
+    </view>
+  </view>
+  <view class='navbg'>
+    <view class='scroll-view_H'>
+      <view class="{{currentTab==0?'select':'normal'}}" data-current='0' bindtap='switchNav'>车主</view>
+      <view class="{{currentTab==1?'select':'normal'}}" data-current='1' bindtap='switchNav'>乘客</view>
+    </view>
+  </view>
+  <view class='content'>
+    <swiper current='{{currentTab}}' class='' bindchange='changePage' style='height:{{winHeight}}rpx'>
+      <swiper-item>
+        <scroll-view scroll-y="true">
+          <image src='/images/nullOrder.png' class='nullOrder' wx:if="{{isNullOrder}}"></image>
+          <view wx:for="{{carMess}}" style='margin-top:20rpx' class='finally'>
+            <image class='img' src='{{statusImg[imgArray1[index]]}}'></image>
+            <view class="carMess" id='{{item.j_id}}' data-index="{{index}}">
+              <view class="module">
+                <view class="medul hd" style='position:relative; border-bottom:1rpx solid #eee;height:76rpx'>
+                  <view class="medul-heading head" style='text-align:left;position:absolute;top:10rpx;font-size:30rpx'>乘客信息</view>
+                  <view class="medul-heading head h1" style='text-align:left;position:absolute;top:10rpx;font-size:30rpx;right:-140rpx;'> {{timeArray[index]}}</view>
+                </view>
+                <view class="medul">
+                  <view class="medul-content">
+                    <text class="iconfont icon-xingmingyonghumingnicheng"></text>{{item.u_name==null?'暂无':item.u_name}}</view>
+                  <view class="medul-content">
+                    <text class="iconfont icon-weibiaoti-"></text>
+                    <text class='phoneNum' selectable='true' bindtap='phoneCall' data-phone-num='{{item.u_phone}}' wx:if="{{item.u_phone!==null}}">{{item.u_phone}}</text>
+                    <text wx:if="{{item.u_phone==null}}">暂无</text>
+                  </view>
+                  <view class="medul-content">
+                    <text class="iconfont icon-jiage"></text>{{item.price}}元</view>
+                </view>
+                <view class="medul">
+                  <view class="medul-address">
+                    <text class="iconfont icon-icon-"></text>{{item.from_place}}</view>
+                  <view class="medul-address">
+                    <text class="iconfont icon-diandongche" style='font-size:60rpx'></text>
+                  </view>
+                  <view class="medul-address">
+                    <text class="iconfont icon-icon-"></text>{{item.to_place}}</view>
+                </view>
+                <view class="medul" style='margin-top:-40rpx;'>
+                  <view class="medul-last" style='text-align:center;padding-bottom:20rpx;'>
+                  </view>
+                  <view class="medul-last" style='text-align:center;padding-bottom:20rpx;'>
+                  </view>
+                  <view class="medul-last" style='text-align:center;padding-bottom:20rpx;'>
+                    <button size='mini' id='{{item.j_id}}' class='buttonClass buttonClass1' hover-class="buttonHover" bindtap='Report' data-index='{{index}}'>举报</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y="true">
+          <image src='/images/nullOrder.png' class='nullOrder' wx:if="{{isNullOrder1}}"></image>
+          <view wx:for="{{Passenger}}" style='margin-top:20rpx' class='finally'>
+            <image class='img' src='{{statusImg[imgArray2[index]]}}'></image>
+            <view class="carMess" id='{{item.j_id}}' data-index="{{index}}">
+              <view class="module">
+                <view class="medul hd" style='position:relative; border-bottom:1rpx solid #eee;height:76rpx'>
+                  <view class="medul-heading head" style='text-align:left;position:absolute;top:10rpx;font-size:30rpx'>车主信息</view>
+                  <view class="medul-heading head h1" style='text-align:left;position:absolute;top:16rpx;font-size:30rpx;right:-140rpx;'> {{timeArray1[index]}}</view>
+                </view>
+                <view class="medul">
+                  <view class="medul-content">
+                    <text class="iconfont icon-xingmingyonghumingnicheng"></text>
+                    <text wx:if="{{item.u_name==null}}">暂无</text>
+                    <text wx:if="{{item.u_name!==null}}">{{item.u_name}}</text>
+                  </view>
+                  <view class="medul-content">
+                    <text class="iconfont icon-weibiaoti-"></text>
+                    <text class='phoneNum' selectable='true' bindtap='phoneCall' data-phone-num='{{item.u_phone}}' wx:if="{{item.u_phone!==null}}">{{item.u_phone}}</text>
+                    <text class='phoneNum' selectable='true' bindtap='phoneCall' data-phone-num='{{item.u_phone}}' wx:if="{{item.u_phone==null}}">暂无</text>
+                  </view>
+                  <view class="medul-content">
+                    <text class="iconfont icon-jiage"></text>{{item.price}}元</view>
+                </view>
+                <view class="medul">
+                  <view class="medul-address">
+                    <text class="iconfont icon-icon-"></text>{{item.from_place}}</view>
+                  <view class="medul-address">
+                    <text class="iconfont icon-diandongche" style='font-size:60rpx'></text>
+                  </view>
+                  <view class="medul-address">
+                    <text class="iconfont icon-icon-"></text>{{item.to_place}}</view>
+                </view>
+                <view class="medul" style='margin-top:-40rpx;'>
+                  <view class="medul-last" style='text-align:center;padding-bottom:20rpx;'>
+                  </view>
+                  <view class="medul-last" style='text-align:center;padding-bottom:20rpx;'>
+                  </view>
+                  <view class="medul-last" style='text-align:center;padding-bottom:20rpx;'>
+                    <button size='mini' id='{{item.j_id}}' class='buttonClass buttonClass1' hover-class="buttonHover" bindtap='Report1' data-index='{{index}}'>举报</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
+
+<modal title="举报原因" hidden="{{hiddenModal}}" confirm-text="确认" cancel-text="取消" bindconfirm="bindconfirm" bindcancel="listenerCancel" data-status="{{status}}" catchtouchmove="preventTouchMove">
+  <view style="height:100%; width:100%;">
+    <textarea type='text' value='{{detail}}' bindinput='detailMess' maxlength="50" placeholder='请输入举报信息' class='inputMess'></textarea>
+  </view>
+</modal>

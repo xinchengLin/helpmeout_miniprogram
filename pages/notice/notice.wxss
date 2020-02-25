@@ -1,0 +1,28 @@
+/* pages/notice/notice.wxss */
+.container{
+  padding: 30rpx;
+}
+.noticeItem{
+  width: 100%;
+  font-size: 28rpx;
+}
+.noticeItem .title{
+  display: block;
+  text-align: left;
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 100rpx;
+}
+.noticeItem text{
+  display: block;
+  line-height: 60rpx;
+}
+.bottom{
+  text-align: center;
+  color: #999;
+  line-height: 60rpx;
+  font-size: 32rpx;
+}
+.agreement{
+  color: #0099FF;
+}

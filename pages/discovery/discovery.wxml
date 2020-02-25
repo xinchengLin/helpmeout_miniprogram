@@ -1,0 +1,94 @@
+<!--pages/discovery/discovery.wxml-->
+<view class='container'>
+  <view class='tipText'>
+    <image src='/images/icon/tips.png' class='tipImage'></image>
+    <view class='notice'>
+      <view class='banMove'></view>
+      <swiper class='noticeSwiper' autoplay='{{true}}' interval='6000' circular='{{true}}' duration='5000' next-margin='50rpx'>
+        <swiper-item>{{notice}}</swiper-item>
+        <swiper-item>{{notice}}</swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <view class='navbg'>
+    <view class='scroll-view_H'>
+      <view class="{{flag==0?'select':'normal'}}" id="0" bindtap='switchNav'>我要找乘客</view>
+      <view class="{{flag==1?'select':'normal'}}" id="1" bindtap='switchNav'>我要找车主</view>
+    </view>
+  </view>
+
+  <swiper current='{{currentTab}}' bindchange="swiperChange" style='height: {{winHeight-10}}rpx'>
+    <swiper-item>
+      <scroll-view scroll-y="true">
+        <image src='/images/nullOrder.png' class='nullOrder' wx:if="{{isNullOrder1}}"></image> 
+        <view class='orderList' wx:else>
+          <view class="listItem" wx:for="{{orderList}}" wx:for-index="idx" wx:key="{{item.j_id}}" bindtap="modalinput" id='{{idx}}' wx:if="{{item.identity === '0' && item.overTime == false}}">
+             <view class='iconfont icon-accountfilling'></view> 
+            <view class='item pos'>
+              <view class='title'></view>
+              <view class='msg'>{{item.from_place}}</view>
+              <view class='iconfont icon-iconfontzhizuobiaozhun47'></view>
+              <view class='msg'>{{item.to_place}}</view>
+            </view>
+            <view class='item timeAndPrice'>
+              <view class='title'></view>
+              <view class='msg'>
+                <text>出发时间：</text>
+                <text wx:if="{{item.date == '0'}}">今天</text>
+                <text wx:if="{{item.date == '1'}}">明天</text>
+                {{timeArray[idx]}}
+              </view>
+              <view class='msg'>价钱：￥{{item.price}}</view>
+            </view>
+            <view class='item'>
+              <view class='title'></view>
+              <view class='msg'>
+                <text>备注：</text>
+                <text>{{item.note !== null && item.note !== ''?item.note:"无"}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="true">
+        <image src='/images/nullOrder.png' class='nullOrder' wx:if="{{isNullOrder2}}"></image> 
+        <view class='orderList' wx:else>
+          <view class="listItem" wx:for="{{orderList}}" wx:for-index="idx" wx:key="{{item.j_id}}" bindtap="modalinput" id='{{idx}}' wx:if="{{item.identity === '1' && item.overTime == false}}">
+            <view class='iconfont icon-motuoche'></view>
+            <view class='item pos'>
+              <view class='title'></view>
+              <view class='msg'>{{item.from_place}}</view>
+              <view class='iconfont icon-iconfontzhizuobiaozhun47'></view>
+              <view class='msg'>{{item.to_place}}</view>
+            </view>
+            <view class='item timeAndPrice'>
+              <view class='title'></view>
+              <view class='msg'>
+                <text>出发时间：</text>
+                <text wx:if="{{item.date == '0'}}">今天</text>
+                <text wx:if="{{item.date == '1'}}">明天</text>
+                {{timeArray[idx]}}
+              </view>
+              <view class='msg'>价钱：￥{{item.price}}</view>
+            </view>
+            <view class='item'>
+              <view class='title'></view>
+              <view class='msg'>
+                <text>备注：</text>
+                <text>{{item.note !== null && item.note !== ''?item.note:"无"}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+  <modal hidden="{{hiddenmodalput}}" title="{{modalTitle[flag]}}" confirm-text="提交" cancel-text="取消" bindcancel="cancelMsg" bindconfirm="confirmMsg" catchtouchmove="preventTouchMove"> 
+    <text class='inputMsg'>{{nickName}}</text> 
+    <input type='number' placeholder="电话号码" bindinput='inputNum' class='inputMsg' value='{{phone}}'></input>
+    <input type='number' placeholder="支付宝账号(选填)" bindinput='pay_number' class='inputMsg' value='{{pay_number}}' wx:if="{{currentTab === 0}}"></input>    
+  </modal>
+</view>

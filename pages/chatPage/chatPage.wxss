@@ -1,0 +1,91 @@
+/* pages/chatPage/chatPage.wxss */
+.container{
+  padding: 0 30rpx 130rpx;
+}
+.showMsg{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 20rpx 0;
+  font-size: 32rpx;
+}
+.showMsg .name{
+  margin-right: 20rpx;
+}
+.showMsg .msg{
+  color: #a8a8a8;
+  text-indent: 12rpx;
+}
+.mine{
+  color: #f06f7f;
+}
+.his{
+  color: #4682B4;
+}
+.inputFrame{
+  width: 100%;
+  height: 120rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+}
+form{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.fontStyle{
+  width: 100%;
+  height: 100%;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  display: flex;
+}
+.fontStyle input{
+  width: 80%;
+  border-bottom: 2rpx solid #f06f7f;
+  border-radius: 5rpx;
+  line-height: 80rpx;
+  height:80rpx;
+  padding:0 10rpx;
+  margin: auto 0;
+  margin-right: 20rpx;
+  box-sizing: border-box;
+}
+.fontStyle .buttonClass{
+  width: 20%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  padding: 0 20rpx;
+  margin: auto 0;
+  box-sizing: border-box;
+}
+
+/*.inputFrame .formStyle{
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.inputFrame .formStyle input{
+  width: 80%;
+  border-bottom: 2rpx solid #f06f7f;
+  border-radius: 5rpx;
+  line-height: 80rpx;
+  height:80rpx;
+  padding:0 10rpx;
+  margin: auto 0;
+  margin-right: 20rpx;
+  box-sizing: border-box;
+}
+.inputFrame .formStyle .buttonClass{
+  width: 20%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  padding: 0 20rpx;
+  margin: auto 0;
+  box-sizing: border-box;
+} */

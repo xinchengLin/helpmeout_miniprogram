@@ -1,0 +1,28 @@
+/* pages/myCode/myCode.wxss */
+.chooseCode{
+  width: 80%;
+  margin: 40rpx auto 20rpx;
+  border: 2rpx solid #f06f7f;
+  color: #f06f7f;
+  height: 80rpx;
+  text-align: center;
+}
+.chooseCode text{
+  line-height: 80rpx;
+  font-size: 32rpx;
+}
+.chooseCode icon{
+  position:relative;
+  top:10rpx;
+}
+.myCode{
+  width: 80%;
+  margin: 0 auto 50rpx;
+}
+.myCode image{
+  width: 100%;
+  display: block;
+}
+.myCode text{
+  line-height: 70rpx;
+}

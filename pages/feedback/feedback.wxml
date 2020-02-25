@@ -1,0 +1,11 @@
+<!--反馈-->
+<view class="content">
+  <form action="" class="medul-form" bindsubmit="formSubmit">
+    <view class="flex">
+        <textarea  placeholder="请输入你对本小程序的意见反馈" class="textrea" name="feedback" value='{{feedBackText}}'></textarea>
+      <view class='feedbackBtn'>
+        <button class="buttonClass" hover-class='buttonHover' form-type='submit'>提交</button>
+      </view>
+    </view>
+  </form>
+</view>

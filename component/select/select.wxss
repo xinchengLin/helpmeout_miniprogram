@@ -1,0 +1,67 @@
+/* component/select/select.wxss */
+.com-selectBox{
+    width: 100%;
+    height: 100%;
+}
+.com-sContent{
+    border: 1px solid #e2e2e2;
+    background: white;
+    /* font-size: 16px; */
+    position: relative;
+    height: 100%;
+    line-height: 30px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center
+}
+.com-sImg{
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 4px);
+    width: 16px;
+    height: 9px;
+    transition: all .3s ease;
+}
+.com-sTxt{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding:0 20px 0 6px;
+    /* font-size: 14px; */
+    text-align: center;
+    /* line-height: 100 */
+
+}
+.com-sList{
+    background: white;
+    width: 50%;
+    position: absolute;
+    border: 1px solid #e2e2e2;
+    border-top: none;
+    box-sizing: border-box;
+    z-index: 3;
+    max-height: 120px;
+    overflow: auto;
+    overflow: hidden
+   
+}
+.com-sItem{
+    height: 80rpx;
+    /* line-height: 30px; */
+    border-top: 1px solid #e2e2e2;
+    /* padding: 0 6px; */
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* font-size: 14px; */
+    width: 100%;
+      display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center
+}
+.com-sItem:first-child{
+    border-top: none;
+}

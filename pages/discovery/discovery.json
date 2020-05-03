@@ -6,7 +6,8 @@
     "i-message": "../../dist/message/index",
     "i-button": "../../dist/button/index",
     "i-row": "../../dist/row/index",
-    "i-col": "../../dist/col/index"
+    "i-col": "../../dist/col/index",
+    "select":"../../component/select/select"
   }
 }
 

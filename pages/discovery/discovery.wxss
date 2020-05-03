@@ -28,7 +28,9 @@ swiper-item{
   top: 0;
   left: 0;
 }
-
+.navbg .nitem{
+  width: 50%
+}
 .orderList {
   width: 100%;
   height: 100%;
@@ -59,7 +61,13 @@ swiper-item{
 .price {
   color: red;
 }
-
+.flex{
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
 .inputMsg {
   display: block;
   margin-bottom: 30rpx;

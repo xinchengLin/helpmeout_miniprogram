@@ -3,11 +3,43 @@ var app = getApp();
 var utils = require("../../utils/util.js");
 const { $Message } = require('../../dist/base/index');
 
+const date = new Date()
+const years = []
+const months = []
+const days = []
+
+for (let i = 1990; i <= date.getFullYear(); i++) {
+  years.push(i)
+}
+
+for (let i = 1; i <= 12; i++) {
+  months.push(i)
+}
+
+for (let i = 1; i <= 31; i++) {
+  days.push(i)
+}
+
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    selectArray: [{
+      "id": "1",
+      "text": "校园滴滴"
+    }, {
+      "id": "21",
+      "text": "快递代拿"
+    }],
+    years: years,
+    year: date.getFullYear(),
+    months: months,
+    month: 2,
+    days: days,
+    day: 2,
+    value: [9999, 1, 1],
     name: '',
     phone: '',
     hiddenmodalput: true,
@@ -72,7 +104,14 @@ Page({
       }
     ]
   },
-
+  bindChange: function (e) {
+    const val = e.detail.value
+    this.setData({
+      year: this.data.years[val[0]],
+      month: this.data.months[val[1]],
+      day: this.data.days[val[2]]
+    })
+  },
   onShareAppMessage() {
     return {
       title: 'iView Weapp',
@@ -103,7 +142,9 @@ Page({
       visible2: false
     });
   },
-
+  getDate: function (e) {
+    console.log(e.detail)
+  },
   handleClickItem1({ detail }) {
     const index = detail.index + 1;
 

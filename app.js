@@ -76,14 +76,14 @@ App({
   checkLogin: function(){
     wx.checkSession({
       success: res => { //session_key 未过期，并且在本生命周期一直有效
-        var timer = setInterval(() => {    //定时器，获取u_id，直到获取到u_id才停下
-          if(!this.globalData.u_id){
-            console.log("缓存中没有u_id");
-            this.loginRequest();
-          } else {
-            clearInterval(timer);
-          }
-        },2000)
+        // var timer = setInterval(() => {    //定时器，获取u_id，直到获取到u_id才停下
+        //   if(!this.globalData.u_id){
+        //     console.log("缓存中没有u_id");
+        //     this.loginRequest();
+        //   } else {
+        //     clearInterval(timer);
+        //   }
+        // },2000)
       },
       fail: res => {   // session_key 已经失效，需要重新执行登录流程
         this.loginRequest()

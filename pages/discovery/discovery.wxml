@@ -10,12 +10,13 @@
       </swiper>
     </view>
   </view>
-  <view class='navbg'>
-    <view class='scroll-view_H'>
-      <view class="{{flag==0?'select':'normal'}}" id="0" bindtap='switchNav'>我要找乘客</view>
-      <view class="{{flag==1?'select':'normal'}}" id="1" bindtap='switchNav'>我要找车主</view>
-    </view>
-  </view>
+   <view class='navbg'>
+      <view class='scroll-view_H'>
+        <view class="{{flag==0?'select':'normal'}}" id="0" bindtap='switchNav'>校园滴滴</view>
+        <view class="{{flag==1?'select':'normal'}}" id="1" bindtap='switchNav'>快递代拿</view>
+        <view class="{{flag==2?'select':'normal'}}" id="2" bindtap='switchNav'>生活购物</view>
+      </view>
+   </view>
 
   <swiper current='{{currentTab}}' bindchange="swiperChange" style='height: {{winHeight-10}}rpx'>
     <swiper-item>

@@ -5,11 +5,11 @@
     <view class='notice'>
       <text class='noticeText'>车主乘客都可以发单啦，发单时请选择您的身份</text>
     </view>
-  </view> 
+   </view> 
 
    <!-- <view class='header'>
     发布行程
-  </view>  -->
+   </view>-->
 
   <form bindsubmit="formSubmit">
     <view class='category'>

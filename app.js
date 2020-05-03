@@ -42,7 +42,7 @@ App({
     wx.login({
       success: res => {
         wx.request({
-          url: this.globalData.apiUrl + '/user/getOpenIdAndAddUser',
+          url: this.globalData.apiUrl + '/miniprogram/user/login_by_weixin',
           data: {
             "appid": this.globalData.appid,
             "code": res.code,

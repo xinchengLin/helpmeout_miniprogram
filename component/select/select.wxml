@@ -1,7 +1,7 @@
 <!--component/select/select.wxml-->
 <view class='com-selectBox'>
     <view class='com-sContent' bindtap='selectToggle'>
-        <view class='com-sTxt'>分类</view>
+        <view class='com-sTxt'>{{nowText}}</view>
         <image src='/images/icon/pullDown.png'  class='com-sImg'  animation="{{animationData}}"></image>
     </view>
     <view class='com-sList' wx:if="{{selectShow}}">

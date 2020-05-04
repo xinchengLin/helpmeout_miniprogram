@@ -16,6 +16,42 @@
    </view>
      <view class="navbg-item flex nitem">排序</view>
    </view>
+   <swiper current='{{currentTab}}' bindchange="swiperChange" style='height: {{winHeight-10}}rpx'> 
+    <swiper-item> 
+      <scroll-view scroll-y="true"> 
+        <image src='/images/nullOrder.png' class='nullOrder' wx:if="{{isNullOrder1}}"></image>  
+        <view class='orderList' wx:else> 
+          <view class="listItem" wx:for="{{orderList}}" wx:for-index="idx" wx:key="{{item.jId}}" bindtap="modalinput" id='{{idx}}' wx:if="{{item.identity === '0' }}"> 
+             <view class='iconfont icon-accountfilling'></view>  
+            <view class='item pos'> 
+              <view class='title'></view> 
+              <view class='msg'>{{item.fromPlace}}</view> 
+              <view class='iconfont icon-iconfontzhizuobiaozhun47'></view> 
+              <view class='msg'>{{item.toPlace}}</view> 
+            </view> 
+            <view class='item timeAndPrice'> 
+              <view class='title'></view> 
+              <view class='msg'> 
+                <text>出发时间：</text> 
+                <text wx:if="{{item.date == '0'}}">今天</text> 
+                <text wx:if="{{item.date == '1'}}">明天</text> 
+                {{timeArray[idx]}} 
+              </view> 
+              <view class='msg'>价钱：￥{{item.price}}</view> 
+            </view> 
+            <view class='item'> 
+              <view class='title'></view> 
+              <view class='msg'> 
+                <text>备注：</text> 
+                <text>{{item.note !== null && item.note !== ''?item.note:"无"}}</text> 
+              </view> 
+            </view> 
+          </view> 
+        </view> 
+      </scroll-view> 
+    </swiper-item> 
+
+  </swiper> 
 
 
 

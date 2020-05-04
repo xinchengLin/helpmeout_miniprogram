@@ -220,3 +220,23 @@ module.exports = {
   statusTip: statusTip,
   getChattingRecord: getChattingRecord
 }
+
+/**
+ * 调用微信登录
+ */
+function login() {
+  return new Promise(function (resolve, reject) {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          resolve(res);
+        } else {
+          reject(res);
+        }
+      },
+      fail: function (err) {
+        reject(err);
+      }
+    });
+  });
+}

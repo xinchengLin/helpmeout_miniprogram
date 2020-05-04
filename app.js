@@ -1,5 +1,6 @@
 //app.js
 var utils = require('utils/util.js');
+
 App({
   onLaunch: function () {
     wx.removeStorage({
@@ -19,9 +20,9 @@ App({
     secret: '357bc128ebb06af91df3a4cbd908fada',
     u_id: '',
     //apiUrl: 'https://www.itearlpickmeup.cn/pickmeup',
-    // apiUrl: 'http://192.168.1.102:8080/pickmeup',
+     apiUrl: 'http://127.0.0.1:8080',
     //wsUrl: 'wss://www.itearlpickmeup.cn/pickmeup/getServer/',
-    // wsUrl: 'ws://192.168.1.102:8080/pickmeup/getServer/',
+    // wsUrl: 'ws://127.0.0.1:8080/getServer/',
     lockReconnect: false,
     socketOpen: false
   },
@@ -38,11 +39,11 @@ App({
   },
 
   //请求得到用户的u_id
-  loginRequest: function () {
+ /* loginRequest: function () {
     wx.login({
       success: res => {
         wx.request({
-          url: this.globalData.apiUrl + '/miniprogram/user/login_by_weixin',
+          url: this.globalData.apiUrl + '/user/login_by_weixin',
           data: {
             "appid": this.globalData.appid,
             "code": res.code,
@@ -72,7 +73,70 @@ App({
         })
       }
     })
-  },
+  },*/
+  /**
+   * 
+   * 
+   *
+ * 调用微信登录
+ */
+  loginRequest: function (userInfo) {
+
+    let code = null;
+    return new Promise(function (resolve, reject) {
+      return utils.login().then((res) => {
+        code = res.code;
+        return userInfo;
+      }).then((userInfo) => {
+        //登录远程服务器
+        util.request( 
+          this.globalData.apiUrl + '/user/login_by_weixin',
+            { code: code, userInfo: userInfo },
+            'POST',
+            'application/json').then(res => {
+          if (res.errno === 0) {
+            //存储用户信息
+            wx.setStorageSync('userInfo', res.data.userInfo);
+            wx.setStorageSync('token', res.data.token);
+
+            resolve(res);
+          } else {
+            util.showErrorToast(res.errmsg)
+            reject(res);
+          }
+        }).catch((err) => {
+          reject(err);
+        });
+      }).catch((err) => {
+        reject(err);
+      })
+    });
+  } ,
+  //qingqiu
+   request:function({url,method,data,header}){
+     var that = this;
+     let _method = method ?method:'GET';
+     return new Promise((resolve,reject)=>{
+       wx.request({
+         url: that.globalData.apiUrl+url,
+         data: data,
+         header: header,
+         method: _method,
+         dataType: 'json',
+         responseType: 'text',
+         success: function (res) { 
+           resolve(res.data)
+         },
+         fail: function (res) {
+           reject(res)
+          },
+         complete: function (res) { },
+       })
+     })
+   
+   },
+
+
   checkLogin: function(){
     wx.checkSession({
       success: res => { //session_key 未过期，并且在本生命周期一直有效

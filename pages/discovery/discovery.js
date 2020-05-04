@@ -1,7 +1,9 @@
 // pages/discovery/discovery.js
 var app = getApp();
 var utils = require("../../utils/util.js");
-const { $Message } = require('../../dist/base/index');
+const {
+  $Message
+} = require('../../dist/base/index');
 
 const date = new Date()
 const years = []
@@ -30,7 +32,7 @@ Page({
       "id": "1",
       "text": "校园滴滴"
     }, {
-      "id": "21",
+      "id": "2",
       "text": "快递代拿"
     }],
     years: years,
@@ -46,7 +48,7 @@ Page({
     winHeight: '',
     notice: '交易线下完成，本程序仅提供平台，感谢使用~',
     nickName: '正在获取用户名...',
-    modalTitle: ['如有意愿接单，请输入您的信息','如有意愿坐车，请输入您的信息'],
+    modalTitle: ['如有意愿接单，请输入您的信息', '如有意愿坐车，请输入您的信息'],
     orderList: [
       // {
       //   "j_id": "1",
@@ -82,29 +84,9 @@ Page({
     onloaded: false,
     currentTab: 0,
     flag: 0,
-    count: 0,    //计算当前切换的次数
-    visible1: false,
-    actions1: [
-      {
-        name: '选项1',
-      },
-      {
-        name: '选项2'
-      },
-      {
-        name: '去分享',
-        icon: 'share',
-        openType: 'share'
-      }
-    ],
-    actions2: [
-      {
-        name: '删除',
-        color: '#ed3f14'
-      }
-    ]
+    count: 0 //计算当前切换的次数
   },
-  bindChange: function (e) {
+  bindChange: function(e) {
     const val = e.detail.value
     this.setData({
       year: this.data.years[val[0]],
@@ -112,45 +94,49 @@ Page({
       day: this.data.days[val[2]]
     })
   },
-  onShareAppMessage() {
-    return {
-      title: 'iView Weapp',
-      imageUrl: 'https://file.iviewui.com/iview-weapp-logo.png'
-    };
-  },
 
-  handleOpen1() {
-    this.setData({
-      visible1: true
-    });
-  },
-
-  handleCancel1() {
-    this.setData({
-      visible1: false
-    });
-  },
-
-  handleOpen2() {
-    this.setData({
-      visible2: true
-    });
-  },
-
-  handleCancel2() {
-    this.setData({
-      visible2: false
-    });
-  },
-  getDate: function (e) {
+  getDate:  function(e) {
+    console.log(app.loginRequest)
     console.log(e.detail)
-  },
-  handleClickItem1({ detail }) {
-    const index = detail.index + 1;
+    var that = this;
+    let id = e.detail.id;
+    app.request({
+      url: '/Discovery/findAll',
+      method: 'GET'
+    }).then(res => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh();
+      console.log(res)
+      let data = res.data;
+     
+        that.setData({
+          orderList: data
+        })
+     this.isNullShow();
 
-    $Message({
-      content: '点击了选项' + index
-    });
+    })
+    // wx.request({
+    //   url: app.globalData.apiUrl + '/notice/showHeadingNotice',
+    //   method:"POST",
+    //   header:{
+
+    //   },
+
+    //   data:{
+    //     id:id
+    //   },
+    //   success: res => {
+    //     console.log(res);
+    //     let data = res.data;
+    //     that.setData({
+    //       orderList:data
+    //     })
+    //   },
+    //   fail: () => {
+
+    //   }
+    // })
+
   },
 
   handleClickItem2() {
@@ -175,13 +161,13 @@ Page({
   },
 
   //车主输入号码时触发
-  inputNum: function (event) {
+  inputNum: function(event) {
     this.setData({
       driverNum: event.detail.value
     });
   },
   //车主输入支付宝时调用
-  pay_number: function (event) {
+  pay_number: function(event) {
     this.setData({
       pay_number: event.detail.value
     });
@@ -189,16 +175,16 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
-    wx.showNavigationBarLoading()    //显示正在加载数据，等下面的request完成后隐藏
-    console.log("discovery.js中的u_id"+app.globalData.u_id)
+    wx.showNavigationBarLoading() //显示正在加载数据，等下面的request完成后隐藏
+    console.log("discovery.js中的u_id" + app.globalData.u_id)
     //请求订单列表
     this.requestData();
     /*手机*/
     wx.getStorage({
       key: 'phone',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           phone: res.data,
           driverNum: res.data
@@ -208,7 +194,7 @@ Page({
     /*支付宝 */
     wx.getStorage({
       key: 'pay_number',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           pay_number: res.data,
         })
@@ -218,16 +204,20 @@ Page({
   /*
    * 页面显示
    */
-  onShow: function () {
+  onShow: function() {
     //设置页面高度
     var height = app.setHeight(160);
     this.setData({
       winHeight: height
     })
     if (this.data.currentTab == 1) {
-      this.switchNav({ target: { id: 0 } });
+      this.switchNav({
+        target: {
+          id: 0
+        }
+      });
     }
-    if (this.data.onloaded) this.requestData();    //首页打开时，onloaded为false，则不请求数据
+    if (this.data.onloaded) this.requestData(); //首页打开时，onloaded为false，则不请求数据
     this.setData({
       onloaded: true
     })
@@ -236,7 +226,7 @@ Page({
       url: app.globalData.apiUrl + '/notice/showHeadingNotice',
       success: res => {
         console.log(res);
-        if (res.data.code === 200 && res.data.data != null && res.data.data != ''){
+        if (res.data.code === 200 && res.data.data != null && res.data.data != '') {
           this.setData({
             notice: res.data.data
           })
@@ -244,11 +234,11 @@ Page({
             key: 'noticeHeading',
             data: res.data.data,
           })
-        }else{
+        } else {
           wx.getStorage({
             key: 'noticeHeading',
             success: res => {
-              if (res.data != null && res.data != ''){
+              if (res.data != null && res.data != '') {
                 this.setData({
                   notice: res.data
                 })
@@ -257,7 +247,7 @@ Page({
           })
         }
       },
-      fail: ()=>{
+      fail: () => {
         wx.getStorage({
           key: 'noticeHeading',
           success: res => {
@@ -273,7 +263,7 @@ Page({
   /*  
    *  带输入框的模态框   车主点击订单之后出现
    */
-  modalinput: function (e) {
+  modalinput: function(e) {
     //获取用户名
     if (this.data.nickName == "正在获取用户名...") {
       var timer = setInterval(() => {
@@ -292,13 +282,13 @@ Page({
     })
   },
   //取消按钮  
-  cancelMsg: function () {
+  cancelMsg: function() {
     this.setData({
       hiddenmodalput: true
     });
   },
   //确认  
-  confirmMsg: function () {
+  confirmMsg: function() {
     var that = this;
     var resNum = /0?(13|14|15|17|18|19)[0-9]{9}/;
     var rsNum = resNum.test(this.data.driverNum);
@@ -313,8 +303,8 @@ Page({
         data: that.data.pay_number,
       })
       /*
-     *接口2   提交车主姓名及号码
-     */
+       *接口2   提交车主姓名及号码
+       */
       console.log(app.globalData.agreeItem && app.globalData.userInfo)
       if (app.globalData.u_id) {
         //传递的数据
@@ -332,7 +322,7 @@ Page({
           header: {
             'content-type': 'application/json' // 默认值
           },
-          success: function (res) {
+          success: function(res) {
             console.log(res)
             that.setData({
               hiddenmodalput: true
@@ -343,7 +333,7 @@ Page({
                 title: '接单成功',
                 content: '请在“我的—>行程”中查看详情',
                 showCancel: false,
-                success: function (res) {
+                success: function(res) {
                   if (res.confirm) {
                     wx.navigateTo({
                       url: '/pages/trip/trip',
@@ -351,17 +341,16 @@ Page({
                   }
                 }
               })
-            }
-            else if (res.data.code === 400) {  //接单失败的提示
-              utils.statusTip(400,res);
-            }else{                            //其他未知错误
+            } else if (res.data.code === 400) { //接单失败的提示
+              utils.statusTip(400, res);
+            } else { //其他未知错误
               utils.statusTip(500);
             }
           },
-          fail: function () {
+          fail: function() {
             utils.statusTip(0);
           },
-          complete: function(){
+          complete: function() {
             that.requestData();
           }
         })
@@ -376,14 +365,14 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.showNavigationBarLoading();
     this.requestData();
   },
   //请求订单列表
-  requestData: function () {
+  requestData: function() {
     wx.request({
-      url: app.globalData.apiUrl + '/Discovery/findAll',
+      url: app.globalData.apiUrl + '/Discovery/findAl',
       success: res => {
         console.log(res)
         //取消加载
@@ -419,24 +408,24 @@ Page({
         //取消加载
         wx.hideNavigationBarLoading()
         wx.stopPullDownRefresh();
-        this.isNullShow(); 
+        this.isNullShow();
         utils.statusTip(0);
       }
     })
   },
   //判断两个页面是否分别有数据
-  isNullShow: function () {
+  isNullShow: function() {
     var noNullOne = false;
     var noNullTwo = false;
     for (var i = 0; i < this.data.orderList.length; i++) {
       if (this.data.orderList[i].identity === "0") noNullOne = true;
       if (this.data.orderList[i].identity === "1") noNullTwo = true;
     }
-    if (!noNullOne) {   //即无订单
+    if (!noNullOne) { //即无订单
       this.setData({
         isNullOrder1: true
       })
-    }else{
+    } else {
       this.setData({
         isNullOrder1: false
       })
@@ -445,7 +434,7 @@ Page({
       this.setData({
         isNullOrder2: true
       })
-    }else{
+    } else {
       this.setData({
         isNullOrder2: false
       })
@@ -455,55 +444,44 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function() {},
 
   //切换导航
-  switchNav: function (e) {
+  switchNav: function(e) {
     var id = e.target.id;
     if (this.data.currentTab == id) {
       return false;
-    } else{
-      if(this.data.count == 0){
+    } else {
+      if (this.data.count == 0) {
         this.setData({
           currentTab: id,
           flag: id,
-          count: this.data.count+1
+          count: this.data.count + 1
         })
-      }else{
-        setTimeout(()=>{
+      } else {
+        setTimeout(() => {
           this.setData({
             currentTab: id,
             flag: id,
-            count: this.data.count+1
+            count: this.data.count + 1
           })
-        },550);
+        }, 550);
       }
     }
   },
   //滑动页面
-  swiperChange: function (e) {
+  swiperChange: function(e) {
     this.requestData();
     this.setData({
       currentTab: e.detail.current,
       flag: e.detail.current
     })
   },
-  onMessage: function (res) {
-    this.setData({ data: res.data });
+  onMessage: function(res) {
+    this.setData({
+      data: res.data
+    });
     console.log(res);
   },
-  preventTouchMove: function(){}
-  //下拉框
-  , bindShowMsg() {
-    this.setData({
-      select: !this.data.select
-    })
-  },
-  mySelect(e) {
-    var name = e.currentTarget.dataset.name
-    this.setData({
-      tihuoWay: name,
-      select: false
-    })
-  }
+  preventTouchMove: function() {}
 })

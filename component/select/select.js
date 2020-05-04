@@ -6,14 +6,26 @@ Component({
   properties: {
     propArray: {
       type: Array,
+    },
+    orderData:{
+      type:String,
+      default:'请选择'
     }
+  },
+  ready(){
+    console.log(this.properties.orderData)
+    console.log(this.data.nowText)
+    var that = this;
+    this.setData({
+      nowText: that.properties.orderData
+    })
   },
   /**
    * 组件的初始数据
    */
   data: {
     selectShow: false,//初始option不显示
-    nowText: "分类",//初始内容
+    nowText:'请选择',//初始内容
     animationData: {}//右边箭头的动画
   },
   /**

@@ -28,11 +28,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    sortData:1,
+    selectData:1,
+    sortArray: [{
+      "id": 1,
+      "text": "升序"
+    }, {
+      "id": 2,
+      "text": "降序"
+    }],
     selectArray: [{
-      "id": "1",
+      "id": 1,
       "text": "校园滴滴"
     }, {
-      "id": "2",
+      "id": 2,
       "text": "快递代拿"
     }],
     years: years,
@@ -94,15 +103,53 @@ Page({
       day: this.data.days[val[2]]
     })
   },
+  sortMess:function(e){
+    console.log(e.detail)
+    var that = this;
+    let sortData = e.detail.id;
+    this.setData({
+      sortData: sortData
+    })   
+    let id = this.data.selectData;
+    let _data = {
+      id,
+      sortData
+    }
+    app.request({
+      url: '/Discovery/findAll',
+      method: 'GET',
+      data:_data
+    }).then(res => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh();
+      console.log(res)
+      let data = res.data;
 
+      that.setData({
+        orderList: data
+      })
+      this.isNullShow();
+
+    })
+  },
   getDate:  function(e) {
+
     console.log(app.loginRequest)
     console.log(e.detail)
     var that = this;
     let id = e.detail.id;
+    this.setData({
+      selectData:id
+    })
+    let sortData = this.data.sortData;
+    let _data = {
+      id,
+      sortData
+    }
     app.request({
       url: '/Discovery/findAll',
-      method: 'GET'
+      method: 'GET',
+      data:_data
     }).then(res => {
       wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh();

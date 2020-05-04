@@ -12,9 +12,11 @@
   </view>
    <view class='navbg'>
    <view class="navbg-item nitem">
-     <select prop-array='{{selectArray}}' style="width:100%" bind:myget='getDate'></select>
+     <select prop-array='{{selectArray}}' bind:myget='getDate' orderData="分类"></select>
    </view>
-     <view class="navbg-item flex nitem">排序</view>
+    <view class="navbg-item nitem">
+     <select prop-array='{{sortArray}}' bind:myget='sortMess' orderData="排序"></select>
+   </view>
    </view>
    <swiper current='{{currentTab}}' bindchange="swiperChange" style='height: {{winHeight-10}}rpx'> 
     <swiper-item> 
